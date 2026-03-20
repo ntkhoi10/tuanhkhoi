@@ -1,0 +1,157 @@
+\documentclass{beamer}
+
+%================ ENCODING =================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[vietnamese]{babel}
+
+%================ PACKAGES =================
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+
+%================ COLORS (PASTEL LIGHT) =================
+\definecolor{softblue}{RGB}{173,216,255}
+\definecolor{softpurple}{RGB}{210,180,255}
+\definecolor{bg1}{RGB}{245,245,255}
+\definecolor{bg2}{RGB}{230,220,255}
+
+%================ BACKGROUND =================
+\usebackgroundtemplate{
+\begin{tikzpicture}[remember picture,overlay]
+\shade[left color=bg1,right color=bg2]
+(current page.south west) rectangle (current page.north east);
+
+\fill[softblue,opacity=0.2] (current page.north east) circle (2cm);
+\fill[softpurple,opacity=0.2] (current page.south west) circle (2cm);
+\end{tikzpicture}
+}
+
+%================ STYLE =================
+\setbeamercolor{normal text}{fg=black}
+\setbeamertemplate{navigation symbols}{}
+
+%================ BOX =================
+\tcbset{
+colback=white,
+colframe=softblue!70!black,
+arc=10pt,
+boxrule=0.8pt
+}
+
+%================ DOCUMENT =================
+\begin{document}
+
+%================ SLIDE 1 =================
+\begin{frame}{\faProjectDiagram\ Biểu diễn đồ thị}
+\begin{tcolorbox}
+\begin{itemize}
+\item<1-> Đồ thị $G=(V,E)$ gồm tập đỉnh và cạnh
+\item<2-> Mỗi cạnh nối hai đỉnh
+\item<3-> Có thể có hướng hoặc vô hướng
+\item<4-> Có thể có trọng số
+\item<5-> Ứng dụng trong mạng, AI, thuật toán
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE 2 =================
+\begin{frame}{\faList\ Danh sách kề}
+\begin{tcolorbox}
+\begin{itemize}
+\item<1-> Mỗi đỉnh lưu các đỉnh kề
+\item<2-> Cài đặt bằng vector/list
+\item<3-> Tiết kiệm bộ nhớ
+\item<4-> Độ phức tạp $O(V+E)$
+\item<5-> Phù hợp đồ thị thưa
+\end{itemize}
+\end{tcolorbox}
+
+\pause
+\begin{center}
+1: 2,3 \\
+2: 1,4 \\
+3: 1 \\
+4: 2
+\end{center}
+\end{frame}
+
+%================ SLIDE 3 =================
+\begin{frame}{\faTable\ Ma trận kề}
+\begin{tcolorbox}
+\begin{itemize}
+\item<1-> Ma trận $A[i][j]$
+\item<2-> $=1$ nếu có cạnh
+\item<3-> $=0$ nếu không có cạnh
+\item<4-> Truy cập nhanh $O(1)$
+\item<5-> Tốn bộ nhớ $O(V^2)$
+\end{itemize}
+\end{tcolorbox}
+
+\pause
+\[
+\begin{bmatrix}
+0 & 1 & 1 & 0 \\
+1 & 0 & 0 & 1 \\
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0
+\end{bmatrix}
+\]
+\end{frame}
+
+%================ SLIDE 4 =================
+\begin{frame}{\faProjectDiagram\ Minh họa đồ thị}
+\centering
+\begin{tikzpicture}[scale=1]
+
+\node[circle,draw,fill=softblue!60] (1) at (0,0) {1};
+\node[circle,draw,fill=softblue!60] (2) at (2,0) {2};
+\node[circle,draw,fill=softpurple!60] (3) at (1,1.5) {3};
+\node[circle,draw,fill=softpurple!60] (4) at (1,-1.5) {4};
+
+\draw (1)--(2);
+\draw (1)--(3);
+\draw (2)--(4);
+
+\end{tikzpicture}
+\end{frame}
+
+%================ SLIDE 5 =================
+\begin{frame}{\faPlay\ DFS Animation}
+\centering
+\begin{tikzpicture}[scale=1]
+
+\node[circle,draw] (1) at (0,0) {1};
+\node[circle,draw] (2) at (2,0) {2};
+\node[circle,draw] (3) at (1,1.5) {3};
+\node[circle,draw] (4) at (1,-1.5) {4};
+
+\draw (1)--(2);
+\draw (1)--(3);
+\draw (2)--(4);
+
+\only<2->{\fill[softblue] (0,0) circle (0.25);}
+\only<3->{\fill[softpurple] (1,1.5) circle (0.25);}
+\only<4->{\fill[softblue] (2,0) circle (0.25);}
+\only<5->{\fill[softpurple] (1,-1.5) circle (0.25);}
+
+\end{tikzpicture}
+\end{frame}
+
+%================ SLIDE 6 =================
+\begin{frame}{\faBrain\ Lý thuyết DFS}
+\begin{tcolorbox}
+\begin{itemize}
+\item<1-> DFS duyệt theo chiều sâu
+\item<2-> Đi sâu trước rồi quay lui
+\item<3-> Dùng stack hoặc đệ quy
+\item<4-> Độ phức tạp $O(V+E)$
+\item<5-> Ứng dụng: liên thông, chu trình
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+\end{document}
