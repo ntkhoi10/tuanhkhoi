@@ -1,0 +1,365 @@
+\documentclass{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{dolphin}
+
+\usepackage[utf8]{vietnam}
+\usepackage{amsmath}
+\usepackage{tikz}
+
+\title{Lý Thuy?t Ð? Th?}
+\subtitle{T? co b?n d?n DFS và BFS}
+\author{Sinh viên}
+\date{\today}
+
+\begin{document}
+
+%-------------------------
+\frame{\titlepage}
+
+%-------------------------
+\begin{frame}{N?i dung}
+\tableofcontents
+\end{frame}
+
+%=========================
+\section{Khái ni?m d? th?}
+
+%-------------------------
+\begin{frame}{Ð? th? là gì}
+
+Ð? th? là c?u trúc g?m:
+
+\[
+G = (V,E)
+\]
+
+Trong dó
+
+\begin{itemize}
+\item $V$ : t?p d?nh
+\item $E$ : t?p c?nh n?i gi?a các d?nh
+\end{itemize}
+
+Ví d? d? th? don gi?n
+
+\begin{center}
+
+\begin{tikzpicture}
+
+\node[circle,draw] (A) at (0,0) {1};
+\node[circle,draw] (B) at (2,0) {2};
+\node[circle,draw] (C) at (1,1.5) {3};
+
+\draw (A)--(B);
+\draw (B)--(C);
+\draw (C)--(A);
+
+\end{tikzpicture}
+
+\end{center}
+
+\end{frame}
+
+%-------------------------
+\begin{frame}{?ng d?ng c?a d? th?}
+
+Ð? th? du?c dùng trong:
+
+\begin{itemize}
+
+\item m?ng máy tính
+
+\item m?ng xã h?i
+
+\item b?n d? giao thông
+
+\item tìm du?ng ng?n nh?t
+
+\item trí tu? nhân t?o
+
+\end{itemize}
+
+\end{frame}
+
+%=========================
+\section{Bi?u di?n d? th?}
+
+%-------------------------
+\begin{frame}{Ma tr?n k?}
+
+Ma tr?n k? dùng b?ng $n \times n$
+
+\[
+A[i][j]
+\]
+
+\begin{itemize}
+
+\item 1 : có c?nh
+
+\item 0 : không có c?nh
+
+\end{itemize}
+
+Ví d?
+
+\[
+\begin{bmatrix}
+0 &1 &1\\
+1 &0 &1\\
+1 &1 &0
+\end{bmatrix}
+\]
+
+\end{frame}
+
+%-------------------------
+\begin{frame}{Danh sách k?}
+
+Ví d? d? th?
+
+\begin{itemize}
+
+\item 1 : 2 , 3
+
+\item 2 : 1 , 3
+
+\item 3 : 1 , 2
+
+\end{itemize}
+
+Uu di?m
+
+\begin{itemize}
+
+\item ti?t ki?m b? nh?
+
+\item dùng t?t cho d? th? l?n
+
+\end{itemize}
+
+\end{frame}
+
+%=========================
+\section{DFS}
+
+%-------------------------
+\begin{frame}{Thu?t toán DFS}
+
+DFS là duy?t d? th? theo chi?u sâu.
+
+Ý tu?ng:
+
+\begin{itemize}
+
+\item di sâu nh?t có th?
+
+\item n?u không di ti?p du?c thì quay l?i
+
+\end{itemize}
+
+Ð? ph?c t?p
+
+\[
+O(V + E)
+\]
+
+\end{frame}
+
+%-------------------------
+\begin{frame}{Ví d? DFS}
+
+\begin{center}
+
+\begin{tikzpicture}
+
+\node[circle,draw] (1) at (0,0) {1};
+\node[circle,draw] (2) at (2,0) {2};
+\node[circle,draw] (3) at (4,0) {3};
+\node[circle,draw] (4) at (1,1.5) {4};
+\node[circle,draw] (5) at (3,1.5) {5};
+
+\draw (1)--(2);
+\draw (2)--(3);
+\draw (1)--(4);
+\draw (2)--(5);
+
+\end{tikzpicture}
+
+\end{center}
+
+Th? t? duy?t có th?:
+
+\[
+1 \rightarrow 2 \rightarrow 3 \rightarrow 5 \rightarrow 4
+\]
+
+\end{frame}
+
+%-------------------------
+\begin{frame}{Cài d?t DFS b?ng C++}
+
+\begin{block}{Code}
+
+\begin{verbatim}
+vector<int> a[100]; //
+bool visited[100]; //
+
+void DFS(int u)
+{
+ visited[u] = true;
+
+ for(int v : a[u])
+ {
+  if(!visited[v])
+     DFS(v);
+ }
+}
+\end{verbatim}
+\end{block}
+
+\end{frame}
+
+%=========================
+\section{BFS}
+
+%-------------------------
+\begin{frame}{Thu?t toán BFS}
+
+BFS là duy?t d? th? theo chi?u r?ng.
+
+Ý tu?ng:
+
+\begin{itemize}
+
+\item duy?t theo t?ng l?p
+
+\item s? d?ng hàng d?i
+
+\end{itemize}
+
+Ð? ph?c t?p
+
+\[
+O(V + E)
+\]
+
+\end{frame}
+
+%-------------------------
+\begin{frame}{Ví d? BFS}
+
+\begin{center}
+
+\begin{tikzpicture}
+
+\node[circle,draw] (1) at (0,0) {1};
+\node[circle,draw] (2) at (2,0) {2};
+\node[circle,draw] (3) at (4,0) {3};
+\node[circle,draw] (4) at (1,1.5) {4};
+\node[circle,draw] (5) at (3,1.5) {5};
+
+\draw (1)--(2);
+\draw (2)--(3);
+\draw (1)--(4);
+\draw (2)--(5);
+
+\end{tikzpicture}
+
+\end{center}
+
+Th? t? BFS
+
+\[
+1 \rightarrow 2 \rightarrow 4 \rightarrow 3 \rightarrow 5
+\]
+
+\end{frame}
+
+%-------------------------
+\begin{frame}{Cài d?t BFS b?ng C++}
+
+\begin{block}{Code}
+
+\begin{verbatim}
+#include <queue>
+
+vector<int> a[100];
+bool visited[100];
+
+void BFS(int s)
+{
+ queue<int> q;
+
+ q.push(s);
+ visited[s] = true;
+
+ while(!q.empty())
+ {
+  int u = q.front();
+  q.pop();
+
+  for(int v : a[u])
+  {
+   if(!visited[v])
+   {
+    visited[v] = true;
+    q.push(v);
+   }
+  }
+ }
+
+}
+\end{verbatim}
+
+\end{block}
+
+\end{frame}
+
+%=========================
+\section{So sánh}
+
+%-------------------------
+\begin{frame}{So sánh DFS và BFS}
+
+\begin{center}
+
+\begin{tabular}{c|c|c}
+
+ & DFS & BFS \\
+
+\hline
+
+C?u trúc d? li?u & Ngan x?p & Hàng d?i \\
+
+Cách duy?t & Ði sâu & Theo l?p \\
+
+?ng d?ng & Tìm chu trình & Ðu?ng di ng?n \\
+
+\end{tabular}
+
+\end{center}
+
+\end{frame}
+
+%-------------------------
+\begin{frame}{K?t lu?n}
+
+\begin{itemize}
+
+\item Ð? th? là c?u trúc d? li?u quan tr?ng
+
+\item DFS và BFS là hai thu?t toán co b?n
+
+\item du?c dùng nhi?u trong l?p trình và thu?t toán
+
+\end{itemize}
+
+\bigskip
+
+\centerline{\Large Xin c?m on}
+
+\end{frame}
+
+\end{document}
