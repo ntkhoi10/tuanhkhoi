@@ -1,0 +1,102 @@
+\documentclass{beamer}
+
+%================ ENCODING =================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[vietnamese]{babel}
+
+%================ PACKAGES =================
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{listings}
+
+%================ CODE STYLE =================
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    breaklines=true
+}
+
+\usetheme{Madrid}
+
+\title{Giải thuật BFS}
+\author{Nguyễn Tấn Khôi}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+%================ SLIDE 1 =================
+\begin{frame}{Ý tưởng BFS}
+\begin{itemize}
+    \item Duyệt theo từng lớp (level)
+    \item Sử dụng hàng đợi (queue)
+    \item Bắt đầu từ đỉnh nguồn
+\end{itemize}
+\end{frame}
+
+%================ SLIDE 2 =================
+\begin{frame}{Các bước thực hiện}
+\begin{enumerate}
+    \item Khởi tạo queue, thêm đỉnh bắt đầu
+    \item Đánh dấu đã thăm
+    \item Lặp:
+    \begin{itemize}
+        \item Lấy đỉnh đầu queue
+        \item Duyệt các đỉnh kề
+        \item Nếu chưa thăm → thêm vào queue
+    \end{itemize}
+\end{enumerate}
+\end{frame}
+
+%================ SLIDE 3 =================
+\begin{frame}{Phân tích}
+\begin{itemize}
+    \item Mỗi đỉnh duyệt 1 lần
+    \item Mỗi cạnh xét tối đa 2 lần
+    \item Thời gian: $O(n + m)$
+    \item Bộ nhớ: $O(n)$
+\end{itemize}
+\end{frame}
+
+%================ SLIDE 4 =================
+\begin{frame}[fragile]{Code BFS C++}
+\begin{lstlisting}[language=C++]
+#include <bits/stdc++.h>
+using namespace std;
+vector<int> a[1005];
+bool d[1005];
+int n,m;
+
+void bfs(int s){
+    queue<int> q;
+    q.push(s);
+    d[s]=1;
+    while(!q.empty()){
+        int u=q.front(); q.pop();
+        cout<<u<<" ";
+        for(int v:a[u]){
+            if(!d[v]){
+                d[v]=1;
+                q.push(v);
+            }
+        }
+    }
+}
+
+int main(){
+    cin>>n>>m;
+    for(int i=1;i<=m;i++){
+        int u,v; cin>>u>>v;
+        a[u].push_back(v);
+        a[v].push_back(u);
+    }
+    bfs(1);
+}
+\end{lstlisting}
+\end{frame}
+
+\end{document}
