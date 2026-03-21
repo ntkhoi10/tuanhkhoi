@@ -1,0 +1,238 @@
+\documentclass{beamer}
+
+%================ ENCODING =================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[vietnamese]{babel}
+
+%================ PACKAGES =================
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+
+%================ COLORS (PASTEL LIGHT) =================
+\definecolor{softblue}{RGB}{173,216,255}
+\definecolor{softpurple}{RGB}{210,180,255}
+\definecolor{bg1}{RGB}{245,245,255}
+\definecolor{bg2}{RGB}{230,220,255}
+
+%================ BACKGROUND =================
+\usebackgroundtemplate{
+\begin{tikzpicture}[remember picture,overlay]
+\shade[left color=bg1,right color=bg2]
+(current page.south west) rectangle (current page.north east);
+
+\fill[softblue,opacity=0.2] (current page.north east) circle (2cm);
+\fill[softpurple,opacity=0.2] (current page.south west) circle (2cm);
+\end{tikzpicture}
+}
+
+%================ STYLE =================
+\setbeamercolor{normal text}{fg=black}
+\setbeamertemplate{navigation symbols}{}
+
+%================ FOOTLINE =================
+\setbeamercolor{footline}{fg=black,bg=white}
+\setbeamertemplate{footline}{
+\leavevmode
+\hbox{
+\begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.5ex,dp=1ex,left]{footline}
+\hspace{0.3cm} Hoàng Tu? Anh
+\end{beamercolorbox}
+\begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.5ex,dp=1ex,right]{footline}
+\insertframenumber{} / \inserttotalframenumber \hspace{0.3cm}
+\end{beamercolorbox}
+}
+}
+
+%================ BOX =================
+\tcbset{
+colback=white,
+colframe=softblue!70!black,
+arc=10pt,
+boxrule=0.8pt
+}
+
+\begin{document}
+
+%================ SLIDE 1 =================
+\begin{frame}{\faProjectDiagram\ Bi?u di?n d? th?}
+\begin{tcolorbox}
+\begin{itemize}
+\item Ð? th? $G = (V, E)$ v?i $V$ là t?p d?nh, $E$ là t?p c?nh
+\item Ð? th? có th? vô hu?ng ho?c có hu?ng
+\item Bi?u di?n tr?c quan b?ng hình h?c (graph drawing)
+\item M?i c?nh n?i hai d?nh bi?u di?n quan h?
+\item Là mô hình co b?n trong toán r?i r?c
+\end{itemize}
+\end{tcolorbox}
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+\node[circle,draw,fill=softblue!60] (1) at (0,0) {1};
+\node[circle,draw,fill=softblue!60] (2) at (2,0) {2};
+\node[circle,draw,fill=softpurple!60] (3) at (1,1.5) {3};
+\node[circle,draw,fill=softpurple!60] (4) at (1,-1.5) {4};
+
+\draw (1)--(2);
+\draw (1)--(3);
+\draw (2)--(4);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+%================ SLIDE 2 =================
+\begin{frame}{\faList\ Danh sách k? (Adjacency List)}
+\begin{tcolorbox}
+\begin{itemize}
+\item M?i d?nh luu danh sách các d?nh k?
+\item Thu?ng cài d?t b?ng vector ho?c linked list
+\item Ti?t ki?m b? nh? v?i d? th? thua
+\item Ð? ph?c t?p luu tr?: $O(V + E)$
+\item Thu?n l?i cho duy?t DFS/BFS
+\end{itemize}
+\end{tcolorbox}
+
+\begin{center}
+1: 2,3 \\
+2: 1,4 \\
+3: 1 \\
+4: 2
+\end{center}
+\end{frame}
+
+%================ SLIDE 3 =================
+\begin{frame}{\faTable\ Ma tr?n k? (Adjacency Matrix)}
+\begin{tcolorbox}
+\begin{itemize}
+\item Ma tr?n $A[i][j]$ bi?u di?n c?nh gi?a $i, j$
+\item $A[i][j] = 1$ n?u có c?nh, ngu?c l?i = 0
+\item Phù h?p v?i d? th? dày
+\item Truy c?p c?nh trong $O(1)$
+\item T?n b? nh? $O(V^2)$
+\end{itemize}
+\end{tcolorbox}
+
+\[
+\begin{bmatrix}
+0 & 1 & 1 & 0 \\
+1 & 0 & 0 & 1 \\
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0
+\end{bmatrix}
+\]
+\end{frame}
+%================ SLIDE 4 =================
+\begin{frame}{\faBrain\ Phân tích và ?ng d?ng DFS}
+\begin{tcolorbox}
+\begin{itemize}
+\item DFS là thu?t toán co b?n trong lý thuy?t d? th?
+\item Phù h?p v?i bài toán duy?t toàn b? không gian tr?ng thái
+\item S? d?ng trong tìm ki?m và trí tu? nhân t?o
+\item Là n?n t?ng cho nhi?u thu?t toán nâng cao
+\item Ví d?: Tarjan, Kosaraju
+\item Áp d?ng trong phân tích m?ng
+\item Duy?t cây và c?u trúc d? li?u phân c?p
+\item K?t h?p v?i BFS trong nhi?u bài toán
+\item T?i uu b?ng dánh d?u visited
+\item Ý nghia trong Tin h?c và Toán h?c
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: VÍ D? MINH H?A =================
+\begin{frame}{\faLightbulb\ Ví d? minh h?a DFS}
+\begin{tcolorbox}
+\begin{itemize}
+\item Xét d? th? $G = (V,E)$ v?i $V = \{1,2,3,4\}$
+\item Các c?nh: (1,2), (1,3), (2,4)
+\item B?t d?u DFS t? d?nh 1
+\item Th? t? duy?t: 1 ? 2 ? 4 ? 3
+\item S? d?ng m?ng visited d? tránh l?p
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+
+\node[circle,draw,fill=softblue!60] (1) at (0,0) {1};
+\node[circle,draw,fill=softblue!60] (2) at (2,0) {2};
+\node[circle,draw,fill=softpurple!60] (3) at (1,1.5) {3};
+\node[circle,draw,fill=softpurple!60] (4) at (1,-1.5) {4};
+
+\draw (1)--(2);
+\draw (1)--(3);
+\draw (2)--(4);
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%================ SLIDE: CODE DFS =================
+\begin{frame}{\faCode\ Ví d? code DFS (C++)}
+\begin{tcolorbox}
+\begin{itemize}
+\item DFS duy?t theo chi?u sâu
+\item Dùng d? quy d? cài d?t
+\item S? d?ng danh sách k?
+\item Có m?ng visited d? tránh l?p
+\item Ð? ph?c t?p $O(V + E)$
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3cm}
+
+\begin{lstlisting}
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> adj[5];
+bool visited[5];
+
+void dfs(int u) {
+    visited[u] = true;
+    cout << u << " ";
+
+    for(int v : adj[u]) {
+        if(!visited[v]) {
+            dfs(v);
+        }
+    }
+}
+
+int main() {
+    adj[1] = {2, 3};
+    adj[2] = {1, 4};
+    adj[3] = {1};
+    adj[4] = {2};
+
+    dfs(1);
+    return 0;
+}
+\end{lstlisting}
+
+\end{frame}
+
+
+%================ SLIDE: GI?I THÍCH =================
+\begin{frame}{\faLightbulb\ Gi?i thích DFS}
+\begin{tcolorbox}[colframe=softpurple!70!black]
+\begin{itemize}
+\item B?t d?u t? d?nh 1
+\item Ði sâu: 1 ? 2 ? 4
+\item Sau dó quay lui (backtrack)
+\item Ti?p t?c duy?t d?nh 3
+\item visited giúp tránh l?p
+\item K?t qu?: 1 2 4 3
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+\end{document}
