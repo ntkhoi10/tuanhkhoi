@@ -1,0 +1,256 @@
+\documentclass{beamer}
+
+%================ ENCODING =================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[vietnamese]{babel}
+
+%================ PACKAGES =================
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+
+%================ COLORS (PASTEL LIGHT) =================
+\definecolor{softblue}{RGB}{173,216,255}
+\definecolor{softpurple}{RGB}{210,180,255}
+\definecolor{bg1}{RGB}{245,245,255}
+\definecolor{bg2}{RGB}{230,220,255}
+
+%================ BACKGROUND =================
+\usebackgroundtemplate{
+\begin{tikzpicture}[remember picture,overlay]
+\shade[left color=bg1,right color=bg2]
+(current page.south west) rectangle (current page.north east);
+
+\fill[softblue,opacity=0.2] (current page.north east) circle (2cm);
+\fill[softpurple,opacity=0.2] (current page.south west) circle (2cm);
+\end{tikzpicture}
+}
+
+%================ STYLE =================
+\setbeamercolor{normal text}{fg=black}
+\setbeamertemplate{navigation symbols}{}
+
+%================ FOOTLINE =================
+\setbeamercolor{footline}{fg=black,bg=white}
+\setbeamertemplate{footline}{
+\leavevmode
+\hbox{
+\begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.5ex,dp=1ex,left]{footline}
+\hspace{0.3cm} Hoàng Anh Tú
+\end{beamercolorbox}
+\begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.5ex,dp=1ex,right]{footline}
+\insertframenumber{} / \inserttotalframenumber \hspace{0.3cm}
+\end{beamercolorbox}
+}
+}
+
+%================ BOX =================
+\tcbset{
+colback=white,
+colframe=softblue!70!black,
+arc=10pt,
+boxrule=0.8pt
+}
+
+\begin{document}
+%================ SLIDE: KHÁI NIỆM ĐỒ THỊ =================
+\begin{frame}{\faProjectDiagram\ Khái niệm đồ thị}
+\begin{tcolorbox}
+\begin{itemize}
+\item Đồ thị là cấu trúc toán học: $G = (V, E)$
+\item $V$ là tập các đỉnh (vertices)
+\item $E$ là tập các cạnh (edges)
+\item Mỗi cạnh nối hai đỉnh biểu diễn quan hệ
+\item Có thể là đồ thị vô hướng hoặc có hướng
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: THÀNH PHẦN =================
+\begin{frame}{\faCubes\ Các thành phần cơ bản}
+\begin{tcolorbox}
+\begin{itemize}
+\item Đỉnh (Vertex): điểm trong đồ thị
+\item Cạnh (Edge): kết nối giữa hai đỉnh
+\item Bậc đỉnh: số cạnh liên kết với đỉnh
+\item Đường đi (Path): dãy các đỉnh liên tiếp
+\item Chu trình (Cycle): đường đi khép kín
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: VÍ DỤ =================
+\begin{frame}{\faLightbulb\ Ví dụ minh họa}
+\begin{tcolorbox}
+\begin{itemize}
+\item Đồ thị gồm 4 đỉnh: 1, 2, 3, 4
+\item Các cạnh: (1,2), (1,3), (2,4)
+\item Biểu diễn quan hệ giữa các đối tượng
+\item Có thể là mạng bạn bè
+\item Hoặc sơ đồ đường đi
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+\node[circle,draw,fill=softblue!60] (1) at (0,0) {1};
+\node[circle,draw,fill=softblue!60] (2) at (2,0) {2};
+\node[circle,draw,fill=softpurple!60] (3) at (1,1.5) {3};
+\node[circle,draw,fill=softpurple!60] (4) at (1,-1.5) {4};
+
+\draw (1)--(2);
+\draw (1)--(3);
+\draw (2)--(4);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+%================ SLIDE: ỨNG DỤNG =================
+\begin{frame}{\faNetworkWired\ Ứng dụng của đồ thị}
+\begin{tcolorbox}
+\begin{itemize}
+\item Mạng xã hội (Facebook, Instagram)
+\item Bản đồ và hệ thống GPS
+\item Mạng máy tính, Internet
+\item Trí tuệ nhân tạo và tìm kiếm
+\item Bài toán đường đi ngắn nhất
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: PHÂN LOẠI ĐỒ THỊ (CÓ HÌNH) =================
+\begin{frame}{\faSitemap\ Phân loại đồ thị}
+\begin{tcolorbox}
+\begin{itemize}
+\item Đồ thị vô hướng (Undirected)
+\item Đồ thị có hướng (Directed)
+\item Đồ thị có trọng số (Weighted)
+\item Đồ thị đầy đủ (Complete)
+\item Đồ thị liên thông (Connected)
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3cm}
+
+\begin{columns}
+
+%----------------- VÔ HƯỚNG -----------------
+\column{0.33\textwidth}
+\centering
+\textbf{Vô hướng}
+\begin{tikzpicture}[scale=0.7]
+\node[circle,draw,fill=softblue!60] (A) at (0,0) {A};
+\node[circle,draw,fill=softblue!60] (B) at (1.5,0) {B};
+\node[circle,draw,fill=softblue!60] (C) at (0.75,1.3) {C};
+\draw (A)--(B);
+\draw (B)--(C);
+\draw (C)--(A);
+\end{tikzpicture}
+
+%----------------- CÓ HƯỚNG -----------------
+\column{0.33\textwidth}
+\centering
+\textbf{Có hướng}
+\begin{tikzpicture}[scale=0.7,>=stealth]
+\node[circle,draw,fill=softpurple!60] (A) at (0,0) {A};
+\node[circle,draw,fill=softpurple!60] (B) at (1.5,0) {B};
+\node[circle,draw,fill=softpurple!60] (C) at (0.75,1.3) {C};
+\draw[->] (A)--(B);
+\draw[->] (B)--(C);
+\draw[->] (C)--(A);
+\end{tikzpicture}
+
+%----------------- TRỌNG SỐ -----------------
+\column{0.33\textwidth}
+\centering
+\textbf{Trọng số}
+\begin{tikzpicture}[scale=0.7]
+\node[circle,draw,fill=softblue!60] (A) at (0,0) {A};
+\node[circle,draw,fill=softblue!60] (B) at (1.5,0) {B};
+\node[circle,draw,fill=softblue!60] (C) at (0.75,1.3) {C};
+\draw (A)-- node[above]{2} (B);
+\draw (B)-- node[right]{3} (C);
+\draw (C)-- node[left]{1} (A);
+\end{tikzpicture}
+
+\end{columns}
+
+\vspace{0.4cm}
+
+\begin{center}
+\textit{Minh họa trực quan các loại đồ thị cơ bản}
+\end{center}
+
+\end{frame}
+%================ SLIDE: KÝ HIỆU TOÁN HỌC =================
+\begin{frame}{\faSquareRootAlt\ Ký hiệu và tính chất}
+\begin{tcolorbox}
+\begin{itemize}
+\item $|V|$ là số lượng đỉnh
+\item $|E|$ là số lượng cạnh
+\item $\deg(v)$ là bậc của đỉnh $v$
+\item $\sum \deg(v) = 2|E|$ (đồ thị vô hướng)
+\item Áp dụng trong phân tích cấu trúc đồ thị
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: ĐƯỜNG ĐI =================
+\begin{frame}{\faRoute\ Các loại đường đi}
+\begin{tcolorbox}
+\begin{itemize}
+\item Path: dãy đỉnh liên tiếp
+\item Simple Path: không lặp đỉnh
+\item Cycle: đường đi khép kín
+\item Euler Path: đi qua mỗi cạnh đúng 1 lần
+\item Hamilton Path: đi qua mỗi đỉnh đúng 1 lần
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: TÍNH CHẤT =================
+\begin{frame}{\faCheckCircle\ Tính chất đồ thị}
+\begin{tcolorbox}
+\begin{itemize}
+\item Đồ thị liên thông hay không
+\item Có tồn tại chu trình
+\item Số thành phần liên thông
+\item Bậc của các đỉnh
+\item Ảnh hưởng đến thuật toán duyệt
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: MÔ HÌNH HÓA =================
+\begin{frame}{\faNetworkWired\ Mô hình hóa thực tế}
+\begin{tcolorbox}
+\begin{itemize}
+\item Người dùng → đỉnh
+\item Quan hệ → cạnh
+\item Mạng xã hội (Facebook)
+\item Bản đồ giao thông (GPS)
+\item Mạng máy tính và Internet
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: LIÊN HỆ THUẬT TOÁN =================
+\begin{frame}{\faCogs\ Liên hệ thuật toán}
+\begin{tcolorbox}
+\begin{itemize}
+\item DFS: duyệt theo chiều sâu
+\item BFS: duyệt theo chiều rộng
+\item BFS tìm đường ngắn nhất (không trọng số)
+\item DFS dùng kiểm tra chu trình
+\item Cơ sở cho nhiều thuật toán nâng cao
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+\end{document}
