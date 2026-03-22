@@ -1,0 +1,761 @@
+\documentclass{beamer}
+
+%================ ENCODING =================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[vietnamese]{babel}
+
+%================ PACKAGES =================
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+
+%================ COLORS (PASTEL LIGHT) =================
+\definecolor{softblue}{RGB}{173,216,255}
+\definecolor{softpurple}{RGB}{210,180,255}
+\definecolor{bg1}{RGB}{245,245,255}
+\definecolor{bg2}{RGB}{230,220,255}
+
+%================ BACKGROUND =================
+\usebackgroundtemplate{
+\begin{tikzpicture}[remember picture,overlay]
+\shade[left color=bg1,right color=bg2]
+(current page.south west) rectangle (current page.north east);
+
+\fill[softblue,opacity=0.2] (current page.north east) circle (2cm);
+\fill[softpurple,opacity=0.2] (current page.south west) circle (2cm);
+\end{tikzpicture}
+}
+
+%================ STYLE =================
+\setbeamercolor{normal text}{fg=black}
+\setbeamertemplate{navigation symbols}{}
+
+%================ FOOTLINE =================
+\setbeamercolor{footline}{fg=black,bg=white}
+\setbeamertemplate{footline}{
+\leavevmode
+\hbox{
+\begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.5ex,dp=1ex,left]{footline}
+\hspace{0.3cm} TUỆ ANH TÚ KHÔI
+\end{beamercolorbox}
+\begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.5ex,dp=1ex,right]{footline}
+\insertframenumber{} / \inserttotalframenumber \hspace{0.3cm}
+\end{beamercolorbox}
+}
+}
+
+%================ BOX =================
+\tcbset{
+colback=white,
+colframe=softblue!70!black,
+arc=10pt,
+boxrule=0.8pt
+}
+
+\begin{document}
+%================ SLIDE: GIỚI THIỆU =================
+\begin{frame}
+\vspace{0.8cm}
+
+\begin{center}
+\begin{tcolorbox}[colframe=softpurple!70!black, colback=white, width=0.8\textwidth, arc=12pt]
+\centering
+{\LARGE \textbf{LÝ THUYẾT VỀ ĐỒ THỊ}}
+\end{tcolorbox}
+
+\vspace{0.6cm}
+
+\begin{tcolorbox}[width=0.7\textwidth]
+\centering
+\textbf{Nhóm 5} \\[6pt]
+Tuệ Anh \\ 
+Anh Tú \\ 
+Tấn Khôi \\[6pt]
+\textit{Lớp 11A3}
+\end{tcolorbox}
+
+\vspace{0.5cm}
+
+{\small \faProjectDiagram\ Môn: Toán - Tin học}
+\end{center}
+
+\end{frame}
+%================ SLIDE: KHÁI NIỆM ĐỒ THỊ =================
+\begin{frame}{\faProjectDiagram\ Khái niệm đồ thị}
+\begin{tcolorbox}
+\begin{itemize}
+\item Đồ thị là cấu trúc toán học: $G = (V, E)$
+\item $V$ là tập các đỉnh (vertices)
+\item $E$ là tập các cạnh (edges)
+\item Mỗi cạnh nối hai đỉnh biểu diễn quan hệ
+\item Có thể là đồ thị vô hướng hoặc có hướng
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: THÀNH PHẦN =================
+\begin{frame}{\faCubes\ Các thành phần cơ bản}
+\begin{tcolorbox}
+\begin{itemize}
+\item Đỉnh (Vertex): điểm trong đồ thị
+\item Cạnh (Edge): kết nối giữa hai đỉnh
+\item Bậc đỉnh: số cạnh liên kết với đỉnh
+\item Đường đi (Path): dãy các đỉnh liên tiếp
+\item Chu trình (Cycle): đường đi khép kín
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: VÍ DỤ =================
+\begin{frame}{\faLightbulb\ Ví dụ minh họa}
+\begin{tcolorbox}
+\begin{itemize}
+\item Đồ thị gồm 4 đỉnh: 1, 2, 3, 4
+\item Các cạnh: (1,2), (1,3), (2,4)
+\item Biểu diễn quan hệ giữa các đối tượng
+\item Có thể là mạng bạn bè
+\item Hoặc sơ đồ đường đi
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+\node[circle,draw,fill=softblue!60] (1) at (0,0) {1};
+\node[circle,draw,fill=softblue!60] (2) at (2,0) {2};
+\node[circle,draw,fill=softpurple!60] (3) at (1,1.5) {3};
+\node[circle,draw,fill=softpurple!60] (4) at (1,-1.5) {4};
+
+\draw (1)--(2);
+\draw (1)--(3);
+\draw (2)--(4);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+%================ SLIDE: ỨNG DỤNG =================
+\begin{frame}{\faNetworkWired\ Ứng dụng của đồ thị}
+\begin{tcolorbox}
+\begin{itemize}
+\item Mạng xã hội (Facebook, Instagram)
+\item Bản đồ và hệ thống GPS
+\item Mạng máy tính, Internet
+\item Trí tuệ nhân tạo và tìm kiếm
+\item Bài toán đường đi ngắn nhất
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: PHÂN LOẠI ĐỒ THỊ (CÓ HÌNH) =================
+\begin{frame}{\faSitemap\ Phân loại đồ thị}
+\begin{tcolorbox}
+\begin{itemize}
+\item Đồ thị vô hướng (Undirected)
+\item Đồ thị có hướng (Directed)
+\item Đồ thị có trọng số (Weighted)
+\item Đồ thị đầy đủ (Complete)
+\item Đồ thị liên thông (Connected)
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3cm}
+
+\begin{columns}
+
+%----------------- VÔ HƯỚNG -----------------
+\column{0.33\textwidth}
+\centering
+\textbf{Vô hướng}
+\begin{tikzpicture}[scale=0.7]
+\node[circle,draw,fill=softblue!60] (A) at (0,0) {A};
+\node[circle,draw,fill=softblue!60] (B) at (1.5,0) {B};
+\node[circle,draw,fill=softblue!60] (C) at (0.75,1.3) {C};
+\draw (A)--(B);
+\draw (B)--(C);
+\draw (C)--(A);
+\end{tikzpicture}
+
+%----------------- CÓ HƯỚNG -----------------
+\column{0.33\textwidth}
+\centering
+\textbf{Có hướng}
+\begin{tikzpicture}[scale=0.7,>=stealth]
+\node[circle,draw,fill=softpurple!60] (A) at (0,0) {A};
+\node[circle,draw,fill=softpurple!60] (B) at (1.5,0) {B};
+\node[circle,draw,fill=softpurple!60] (C) at (0.75,1.3) {C};
+\draw[->] (A)--(B);
+\draw[->] (B)--(C);
+\draw[->] (C)--(A);
+\end{tikzpicture}
+
+%----------------- TRỌNG SỐ -----------------
+\column{0.33\textwidth}
+\centering
+\textbf{Trọng số}
+\begin{tikzpicture}[scale=0.7]
+\node[circle,draw,fill=softblue!60] (A) at (0,0) {A};
+\node[circle,draw,fill=softblue!60] (B) at (1.5,0) {B};
+\node[circle,draw,fill=softblue!60] (C) at (0.75,1.3) {C};
+\draw (A)-- node[above]{2} (B);
+\draw (B)-- node[right]{3} (C);
+\draw (C)-- node[left]{1} (A);
+\end{tikzpicture}
+
+\end{columns}
+
+\vspace{0.4cm}
+
+\begin{center}
+\textit{Minh họa trực quan các loại đồ thị cơ bản}
+\end{center}
+
+\end{frame}
+%================ SLIDE: KÝ HIỆU TOÁN HỌC =================
+\begin{frame}{\faSquareRootAlt\ Ký hiệu và tính chất}
+\begin{tcolorbox}
+\begin{itemize}
+\item $|V|$ là số lượng đỉnh
+\item $|E|$ là số lượng cạnh
+\item $\deg(v)$ là bậc của đỉnh $v$
+\item $\sum \deg(v) = 2|E|$ (đồ thị vô hướng)
+\item Áp dụng trong phân tích cấu trúc đồ thị
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: ĐƯỜNG ĐI =================
+\begin{frame}{\faRoute\ Các loại đường đi}
+\begin{tcolorbox}
+\begin{itemize}
+\item Path: dãy đỉnh liên tiếp
+\item Simple Path: không lặp đỉnh
+\item Cycle: đường đi khép kín
+\item Euler Path: đi qua mỗi cạnh đúng 1 lần
+\item Hamilton Path: đi qua mỗi đỉnh đúng 1 lần
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: TÍNH CHẤT =================
+\begin{frame}{\faCheckCircle\ Tính chất đồ thị}
+\begin{tcolorbox}
+\begin{itemize}
+\item Đồ thị liên thông hay không
+\item Có tồn tại chu trình
+\item Số thành phần liên thông
+\item Bậc của các đỉnh
+\item Ảnh hưởng đến thuật toán duyệt
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: MÔ HÌNH HÓA =================
+\begin{frame}{\faNetworkWired\ Mô hình hóa thực tế}
+\begin{tcolorbox}
+\begin{itemize}
+\item Người dùng → đỉnh
+\item Quan hệ → cạnh
+\item Mạng xã hội (Facebook)
+\item Bản đồ giao thông (GPS)
+\item Mạng máy tính và Internet
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: LIÊN HỆ THUẬT TOÁN =================
+\begin{frame}{\faCogs\ Liên hệ thuật toán}
+\begin{tcolorbox}
+\begin{itemize}
+\item DFS: duyệt theo chiều sâu
+\item BFS: duyệt theo chiều rộng
+\item BFS tìm đường ngắn nhất (không trọng số)
+\item DFS dùng kiểm tra chu trình
+\item Cơ sở cho nhiều thuật toán nâng cao
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE 1 =================
+\begin{frame}{\faProjectDiagram\ Biểu diễn đồ thị}
+\begin{tcolorbox}
+\begin{itemize}
+\item Đồ thị $G = (V, E)$ với $V$ là tập đỉnh, $E$ là tập cạnh
+\item Đồ thị có thể vô hướng hoặc có hướng
+\item Biểu diễn trực quan bằng hình học (graph drawing)
+\item Mỗi cạnh nối hai đỉnh biểu diễn quan hệ
+\item Là mô hình cơ bản trong toán rời rạc
+\end{itemize}
+\end{tcolorbox}
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+\node[circle,draw,fill=softblue!60] (1) at (0,0) {1};
+\node[circle,draw,fill=softblue!60] (2) at (2,0) {2};
+\node[circle,draw,fill=softpurple!60] (3) at (1,1.5) {3};
+\node[circle,draw,fill=softpurple!60] (4) at (1,-1.5) {4};
+
+\draw (1)--(2);
+\draw (1)--(3);
+\draw (2)--(4);
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+%================ SLIDE 2 =================
+\begin{frame}{\faList\ Danh sách kề (Adjacency List)}
+\begin{tcolorbox}
+\begin{itemize}
+\item Mỗi đỉnh lưu danh sách các đỉnh kề
+\item Thường cài đặt bằng vector hoặc linked list
+\item Tiết kiệm bộ nhớ với đồ thị thưa
+\item Độ phức tạp lưu trữ: $O(V + E)$
+\item Thuận lợi cho duyệt DFS/BFS
+\end{itemize}
+\end{tcolorbox}
+
+\begin{center}
+1: 2,3 \\
+2: 1,4 \\
+3: 1 \\
+4: 2
+\end{center}
+\end{frame}
+
+%================ SLIDE: MINH HỌA DANH SÁCH KỀ =================
+\begin{frame}{\faProjectDiagram\ Minh họa danh sách kề}
+\begin{tcolorbox}
+\begin{itemize}
+\item Đồ thị gồm 4 đỉnh: 1, 2, 3, 4
+\item Các cạnh: (1,2), (1,3), (2,4)
+\item Biểu diễn bằng danh sách kề
+\item Mỗi đỉnh lưu các đỉnh kề trực tiếp
+\item Dễ dùng cho DFS và BFS
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3cm}
+
+\begin{columns}
+% Cột trái: đồ thị
+\column{0.5\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+
+\node[circle,draw,fill=softblue!60] (1) at (0,0) {1};
+\node[circle,draw,fill=softblue!60] (2) at (2,0) {2};
+\node[circle,draw,fill=softpurple!60] (3) at (1,1.5) {3};
+\node[circle,draw,fill=softpurple!60] (4) at (1,-1.5) {4};
+
+\draw (1)--(2);
+\draw (1)--(3);
+\draw (2)--(4);
+
+\end{tikzpicture}
+
+% Cột phải: danh sách kề
+\column{0.5\textwidth}
+\begin{tcolorbox}[colframe=softpurple!70!black]
+\textbf{Danh sách kề:}
+\begin{itemize}
+\item 1: 2, 3
+\item 2: 1, 4
+\item 3: 1
+\item 4: 2
+\end{itemize}
+\end{tcolorbox}
+
+\end{columns}
+
+\end{frame}
+
+%================ SLIDE 3 =================
+\begin{frame}{\faTable\ Ma trận kề (Adjacency Matrix)}
+\begin{tcolorbox}
+\begin{itemize}
+\item Ma trận $A[i][j]$ biểu diễn cạnh giữa $i, j$
+\item $A[i][j] = 1$ nếu có cạnh, ngược lại = 0
+\item Phù hợp với đồ thị dày
+\item Truy cập cạnh trong $O(1)$
+\item Tốn bộ nhớ $O(V^2)$
+\end{itemize}
+\end{tcolorbox}
+
+\[
+\begin{bmatrix}
+0 & 1 & 1 & 0 \\
+1 & 0 & 0 & 1 \\
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0
+\end{bmatrix}
+\]
+\end{frame}
+
+%================ SLIDE: MINH HỌA MA TRẬN KỀ =================
+\begin{frame}{\faTable\ Minh họa ma trận kề}
+\begin{tcolorbox}
+\begin{itemize}
+\item Đồ thị gồm 4 đỉnh: 1, 2, 3, 4
+\item Các cạnh: (1,2), (1,3), (2,4)
+\item Biểu diễn bằng ma trận kề
+\item $A[i][j] = 1$ nếu có cạnh
+\item $A[i][j] = 0$ nếu không có cạnh
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3cm}
+
+\begin{columns}
+
+% Cột trái: đồ thị
+\column{0.5\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+
+\node[circle,draw,fill=softblue!60] (1) at (0,0) {1};
+\node[circle,draw,fill=softblue!60] (2) at (2,0) {2};
+\node[circle,draw,fill=softpurple!60] (3) at (1,1.5) {3};
+\node[circle,draw,fill=softpurple!60] (4) at (1,-1.5) {4};
+
+\draw (1)--(2);
+\draw (1)--(3);
+\draw (2)--(4);
+
+\end{tikzpicture}
+
+% Cột phải: ma trận kề
+\column{0.5\textwidth}
+\begin{tcolorbox}[colframe=softpurple!70!black]
+\textbf{Ma trận kề:}
+\[
+\begin{bmatrix}
+0 & 1 & 1 & 0 \\
+1 & 0 & 0 & 1 \\
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0
+\end{bmatrix}
+\]
+\end{tcolorbox}
+
+\end{columns}
+
+\end{frame}
+%================ SLIDE 4 =================
+\begin{frame}{\faBrain\ Phân tích và ứng dụng DFS}
+\begin{tcolorbox}
+\begin{itemize}
+\item DFS là thuật toán cơ bản trong lý thuyết đồ thị
+\item Phù hợp với bài toán duyệt toàn bộ không gian trạng thái
+\item Sử dụng trong tìm kiếm và trí tuệ nhân tạo
+\item Là nền tảng cho nhiều thuật toán nâng cao
+\item Ví dụ: Tarjan, Kosaraju
+\item Áp dụng trong phân tích mạng
+\item Duyệt cây và cấu trúc dữ liệu phân cấp
+\item Kết hợp với BFS trong nhiều bài toán
+\item Tối ưu bằng đánh dấu visited
+\item Ý nghĩa trong Tin học và Toán học
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: VÍ DỤ MINH HỌA =================
+\begin{frame}{\faLightbulb\ Ví dụ minh họa DFS}
+\begin{tcolorbox}
+\begin{itemize}
+\item Xét đồ thị $G = (V,E)$ với $V = \{1,2,3,4\}$
+\item Các cạnh: (1,2), (1,3), (2,4)
+\item Bắt đầu DFS từ đỉnh 1
+\item Thứ tự duyệt: 1 → 2 → 4 → 3
+\item Sử dụng mảng visited để tránh lặp
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+
+\node[circle,draw,fill=softblue!60] (1) at (0,0) {1};
+\node[circle,draw,fill=softblue!60] (2) at (2,0) {2};
+\node[circle,draw,fill=softpurple!60] (3) at (1,1.5) {3};
+\node[circle,draw,fill=softpurple!60] (4) at (1,-1.5) {4};
+
+\draw (1)--(2);
+\draw (1)--(3);
+\draw (2)--(4);
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%================ SLIDE: CODE DFS =================
+\begin{frame}{\faCode\ Ví dụ code DFS (C++)}
+\begin{tcolorbox}
+\begin{itemize}
+\item DFS duyệt theo chiều sâu
+\item Dùng đệ quy để cài đặt
+\item Sử dụng danh sách kề
+\item Có mảng visited để tránh lặp
+\item Độ phức tạp $O(V + E)$
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3cm}
+
+\begin{lstlisting}
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> adj[5];
+bool visited[5];
+
+void dfs(int u) {
+    visited[u] = true;
+    cout << u << " ";
+
+    for(int v : adj[u]) {
+        if(!visited[v]) {
+            dfs(v);
+        }
+    }
+}
+
+int main() {
+    adj[1] = {2, 3};
+    adj[2] = {1, 4};
+    adj[3] = {1};
+    adj[4] = {2};
+
+    dfs(1);
+    return 0;
+}
+\end{lstlisting}
+
+\end{frame}
+
+
+%================ SLIDE: GIẢI THÍCH =================
+\begin{frame}{\faLightbulb\ Giải thích DFS}
+\begin{tcolorbox}[colframe=softpurple!70!black]
+\begin{itemize}
+\item Bắt đầu từ đỉnh 1
+\item Đi sâu: 1 → 2 → 4
+\item Sau đó quay lui (backtrack)
+\item Tiếp tục duyệt đỉnh 3
+\item visited giúp tránh lặp
+\item Kết quả: 1 2 4 3
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+%================ SLIDE: ĐỘ PHỨC TẠP =================
+\begin{frame}{\faChartLine\ Độ phức tạp}
+\begin{tcolorbox}
+\begin{itemize}
+\item Danh sách kề: duyệt $O(V+E)$
+\item Ma trận kề: duyệt $O(V^2)$
+\item Kiểm tra cạnh:
+\item List: $O(\deg(u))$
+\item Matrix: $O(1)$
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: ỨNG DỤNG =================
+\begin{frame}{\faCogs\ Ứng dụng trong thuật toán}
+\begin{tcolorbox}
+\begin{itemize}
+\item DFS, BFS → dùng danh sách kề
+\item Dijkstra → list nhanh hơn
+\item Floyd → dùng ma trận kề
+\item Tối ưu phụ thuộc cấu trúc đồ thị
+\item Ứng dụng trong AI, mạng
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: ĐỒ THỊ TRỌNG SỐ =================
+\begin{frame}{\faWeight\ Đồ thị có trọng số}
+\begin{tcolorbox}
+\begin{itemize}
+\item Cạnh có giá trị trọng số
+\item List: lưu (đỉnh, trọng số)
+\item Matrix: lưu trực tiếp giá trị
+\item Không có cạnh → $\infty$
+\item Dùng trong bài toán đường đi
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+
+% Nodes
+\node[circle,draw,fill=softblue!60] (1) at (0,0) {1};
+\node[circle,draw,fill=softblue!60] (2) at (3,0) {2};
+\node[circle,draw,fill=softpurple!60] (3) at (1.5,1) {3};
+\node[circle,draw,fill=softpurple!60] (4) at (1.5,-1) {4};
+
+% Edges (KHÔNG giao nhau)
+\draw (1)-- node[above, fill=white] {2} (3);
+\draw (3)-- node[right, fill=white] {5} (2);
+\draw (2)-- node[below, fill=white] {3} (4);
+\draw (4)-- node[left, fill=white] {4} (1);
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+%================ SLIDE: ĐỒ THỊ CÓ HƯỚNG =================
+\begin{frame}{\faArrowRight\ Đồ thị có hướng}
+\begin{tcolorbox}
+\begin{itemize}
+\item Cạnh có hướng $(u \rightarrow v)$
+\item Ma trận: $A[i][j] \neq A[j][i]$
+\item List: chỉ lưu cạnh đi ra
+\item Áp dụng trong mạng, web
+\item Ví dụ: đồ thị DAG
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tikzpicture}[scale=1, >=stealth]
+
+\node[circle,draw,fill=softblue!60] (1) at (0,0) {1};
+\node[circle,draw,fill=softblue!60] (2) at (2,0) {2};
+\node[circle,draw,fill=softpurple!60] (3) at (1,1.5) {3};
+\node[circle,draw,fill=softpurple!60] (4) at (1,-1.5) {4};
+
+\draw[->, thick] (1) -- (2);
+\draw[->, thick] (2) -- (3);
+\draw[->, thick] (3) -- (1);
+\draw[->, thick] (1) -- (4);
+
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+%================ SLIDE: CHUYỂN ĐỔI =================
+\begin{frame}{\faExchangeAlt\ Chuyển đổi biểu diễn}
+\begin{tcolorbox}
+\begin{itemize}
+\item Matrix → List: duyệt từng hàng
+\item List → Matrix: gán lại giá trị
+\item Giữ nguyên cấu trúc đồ thị
+\item Dùng trong tối ưu thuật toán
+\item Phổ biến trong lập trình thi
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: BỘ NHỚ =================
+\begin{frame}{\faMemory\ Phân tích bộ nhớ}
+\begin{tcolorbox}
+\begin{itemize}
+\item Matrix: $O(V^2)$
+\item List: $O(V+E)$
+\item Đồ thị thưa → dùng list
+\item Đồ thị dày → dùng matrix
+\item Tối ưu theo bài toán
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: PHÉP TOÁN =================
+\begin{frame}{\faCalculator\ Phép toán trên đồ thị}
+\begin{tcolorbox}
+\begin{itemize}
+\item Tính bậc đỉnh
+\item Matrix: tổng hàng/cột
+\item List: số phần tử kề
+\item Kiểm tra cạnh tồn tại
+\item Duyệt toàn bộ đồ thị
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE: SO SÁNH =================
+\begin{frame}{\faBalanceScale\ So sánh hai cách biểu diễn}
+\begin{tcolorbox}
+\begin{itemize}
+\item List: tiết kiệm bộ nhớ
+\item Matrix: truy cập nhanh
+\item List: phù hợp DFS/BFS
+\item Matrix: đơn giản hơn
+\item Chọn theo bài toán
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+%================ SLIDE 1 =================
+\begin{frame}{Ý tưởng DFS}
+\begin{itemize}
+    \item Duyệt theo chiều sâu (depth)
+    \item Đi càng sâu càng tốt trước
+    \item Sử dụng đệ quy hoặc stack
+\end{itemize}
+\end{frame}
+
+%================ SLIDE 2 =================
+\begin{frame}{Các bước thực hiện}
+\begin{enumerate}
+    \item Bắt đầu từ đỉnh nguồn
+    \item Đánh dấu đã thăm
+    \item Duyệt các đỉnh kề:
+    \begin{itemize}
+        \item Nếu chưa thăm → gọi đệ quy
+    \end{itemize}
+\end{enumerate}
+\end{frame}
+
+%================ SLIDE 3 =================
+\begin{frame}{Phân tích}
+\begin{itemize}
+    \item Mỗi đỉnh duyệt 1 lần
+    \item Mỗi cạnh xét tối đa 2 lần
+    \item Thời gian: $O(n + m)$
+    \item Bộ nhớ: $O(n)$
+\end{itemize}
+\end{frame}
+
+%================ SLIDE 4 =================
+\begin{frame}[fragile]{Code DFS C++}
+\begin{lstlisting}[language=C++]
+#include <bits/stdc++.h>
+using namespace std;
+vector<int> a[1005];
+bool d[1005];
+int n,m;
+
+void dfs(int u){
+    d[u]=1;
+    cout<<u<<" ";
+    for(int v:a[u]){
+        if(!d[v]){
+            dfs(v);
+        }
+    }
+}
+
+int main(){
+    cin>>n>>m;
+    for(int i=1;i<=m;i++){
+        int u,v; cin>>u>>v;
+        a[u].push_back(v);
+        a[v].push_back(u);
+    }
+    dfs(1);
+}
+\end{lstlisting}
+\end{frame}
+
+\end{document}
